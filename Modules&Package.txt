@@ -1,0 +1,49 @@
+Standard (Built-In) Modules
+Python comes with a library of standard modules. Some modules are built into the interpreter; these provide access to operations that are not part of the core of the language but are nevertheless built-in, either for efficiency or to provide access to operating system primitives such as system calls. The set of such modules is a configuration option which also depends on the underlying platform. For example, the winreg module is only provided on Windows systems. One particular module deserves special mention: sys, which is built into every Python interpreter.
+
+List of built-in modules could be found in this link [https://docs.python.org/2/library/index.html] .
+
+
+xploring Built-In Modules
+Two very important functions come in handy when exploring modules in Python - the dir and help functions. We can look for which functions are implemented in each module, by using the dir function:
+
+===================================================
+>>> import urllib
+>>> dir(urllib)
+['ContentTooShortError', 'FancyURLopener', 'MAXFTPCACHE', 'URLopener', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__version__', '_ftperrors', '_get_proxies', '_get_proxy_settings', '_have_ssl', '_hexdig', '_hextochr', '_hostprog', '_is_unicode', '_localhost', '_noheaders', '_nportprog', '_passwdprog', ...
+>>> help(urllib) # will return a listing of information on the given module
+===================================================
+
+[package]
+A module is a single file (or files) that are imported under one import. A package is a collection of modules in directories that give a package hierarchy.
+
+===================================================
+> from my_package.subdirectory import my_functions
+===================================================
+
+
+sample_project
+     |_____ python_file.py
+     |_____ my_modules
+               |_____ __init__.py
+               |_____ test_module.py
+               |_____ another_module.py
+               |_____ third_module.py
+
+[Writing Packages]
+Each package in Python is a folder which MUST contain a special file called __init__.py. This file can be empty, and it indicates that the directory containing it is a Python package, so it can be imported the same way a module can be imported.
+
+If we create a directory called my_modules, which marks the package name, we can then create a module inside that package called test_module. We also must not forget to add the __init__.py file inside the my_modules directory.
+
+To use the module test_module, we can import it in two ways:
+
+To use the module test_module, we can import it in two ways:
+
+> import my_modules.test_module
+OR
+
+>from my_modules import test_module
+The __init__.py file can also decide which modules this package will export as an API, while keeping other modules internal, by overriding the __all__ variable, like so:
+
+>__init__.py:
+>__all__ = ["test_module"]
